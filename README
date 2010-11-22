@@ -54,3 +54,5 @@ External reading about what this is:
 * [1] http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol
 * http://code.google.com/p/v8/wiki/DebuggerProtocol
 
+Author: Slava V <bomboze@gmail.com>
+License: New BSD
