@@ -58,6 +58,8 @@ class ChromeRemoteShell(object):
             self.sock.connect((host, port))
         except:
             print "Run 'google-chrome --remote-shell-port=9222'"
+            raise
+            
         self.sock.send('ChromeDevToolsHandshake\r\n')
         assert self.sock.recv(4096) == 'ChromeDevToolsHandshake\r\n' 
 
@@ -99,6 +101,12 @@ class ChromeRemoteShell(object):
     def tabs(self):
         return list(ChromeTab(self, tab_id, url) for tab_id, url in 
                 self.send_raw({ "command": "list_tabs" })['data'])
+    
+    def tab_by_url(self, url):
+        for tab in self.tabs():
+            if tab.url == url:
+                return tab
+        raise LookupError("Tab not found")
 
     def attach(self, tab_id):
         return self.send_raw({ "command": "version" })['data']
@@ -106,9 +114,17 @@ class ChromeRemoteShell(object):
 if __name__ == '__main__':
     from ChromeRemoteShell import ChromeRemoteShell
     crs = ChromeRemoteShell()
+
     tab = crs.tabs()[0]
+    tab.v8_evaluate_js('window.open("http://new_site.com/");')
+    
+    import time; time.sleep(.2) # give it a time to open
     print tab
+
+    print crs.tab_by_url('http://new_site.com/')
+
     tab.v8_attach()
+
     print tab.v8_eval_expr('1+2')
     tab.v8_eval_expr('1+x') # raises Exception with description
     tab.v8_detach()
