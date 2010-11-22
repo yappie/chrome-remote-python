@@ -1,16 +1,25 @@
 First run:
 $ google-chrome google-chrome --remote-shell-port=9222
 
-Then you can use:
+CAUTION: External users might connect your Google Chrome after running this and 
+run stuff in it, so use firewall.
 
-from ChromeRemoteShell import ChromeRemoteShell
-crs = ChromeRemoteShell()
-tabs = crs.tabs()
-tab = tabs[0]
-print tab
+Then you can use ChromeRemoteShell form Python:
 
-tab.v8_attach()
-print tab.v8_eval_expr('1+2') # prints 3
-tab.v8_eval_expr('1+x') # raises Exception with description
-tab.v8_detach()
+    from ChromeRemoteShell import ChromeRemoteShell
+    crs = ChromeRemoteShell()
+
+    tab = crs.tabs()[0]
+    tab.v8_evaluate_js('window.open("http://new_site.com/");')
+    
+    import time; time.sleep(.2) # give it a time to open
+    print tab
+
+    print crs.tab_by_url('http://new_site.com/')
+
+    tab.v8_attach()
+
+    print tab.v8_eval_expr('1+2')
+    tab.v8_eval_expr('1+x') # raises Exception with description
+    tab.v8_detach()
 
