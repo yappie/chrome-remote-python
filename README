@@ -10,9 +10,9 @@ $ google-chrome --remote-shell-port=9222
 CAUTION: External users might connect to your Google Chrome after running 
 this and run stuff in Chrome, so use firewall.
 
-WARNING: You need to have some real web page open in Chrome before trying
-to evaluate expressions (not some extension page, otherwise remote shell waits 
-indefinitely), so even better run:
+WARNING: You SHOULD have some real web page open in Chrome before trying
+to evaluate expressions (not some extension page, otherwise sometimes remote 
+shell waits indefinitely), so even better run:
 
 $ google-chrome --remote-shell-port=9222 http://google.com/
 
@@ -31,14 +31,14 @@ Then you can use ChromeRemoteShell form Python:
 
     # crs.v8_evaluate_js() doesn't return anything (by design [1], see below for 
     # expressions to get things back) 
-    tab.v8_evaluate_js('window.open("http://new_site.com/ ");')
+    tab.v8_evaluate_js('window.open("http://www.google.com/webhp ");')
     # A space here was not needed (it's here due to bug in GitHub URL parsing)
 
     # Give it a time to open
     import time; time.sleep(.2) 
     
     # Find new tab
-    tab = crs.tab_by_url('http://new_site.com/')
+    tab = crs.tab_by_url('http://www.google.com/webhp')
 
     # Attach to V8 engine debugger
     tab.v8_attach()

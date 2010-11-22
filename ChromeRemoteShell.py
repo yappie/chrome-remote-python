@@ -35,6 +35,7 @@ class ChromeTab(object):
                 "expression": expr
             }
         }
+        print self.url
         res = self.v8_cmd({ 
             "command": "debugger_command", 
             "data": debugger_json
@@ -125,14 +126,14 @@ if __name__ == '__main__':
 
     # crs.v8_evaluate_js() doesn't return anything (by design [1], see below for 
     # expressions to get things back) 
-    tab.v8_evaluate_js('window.open("http://new_site.com/ ");')
+    tab.v8_evaluate_js('window.open("http://www.google.com/webhp");')
     # A space here was not needed (it's here due to bug in GitHub URL parsing)
 
     # Give it a time to open
-    import time; time.sleep(.2) 
+    import time; time.sleep(1) 
     
     # Find new tab
-    tab = crs.tab_by_url('http://new_site.com/')
+    tab = crs.tab_by_url('http://www.google.com/webhp')
 
     # Attach to V8 engine debugger
     tab.v8_attach()
