@@ -54,7 +54,10 @@ class ChromeRemoteShell(object):
     def __init__(self, host = '127.0.0.1', port = 9222):
         self.verbose = False
         self.sock = socket.socket()
-        self.sock.connect((host, port))
+        try:
+            self.sock.connect((host, port))
+        except:
+            print "Run 'google-chrome --remote-shell-port=9222'"
         self.sock.send('ChromeDevToolsHandshake\r\n')
         assert self.sock.recv(4096) == 'ChromeDevToolsHandshake\r\n' 
 
