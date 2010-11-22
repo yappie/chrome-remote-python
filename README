@@ -39,7 +39,12 @@ Then you can use ChromeRemoteShell form Python:
         tab.v8_eval_expr('1+x') # raises Exception with description
     except Exception:
         pass
-        
+
+    # Control dom with document.*
+    tab.v8_evaluate_js('document.write("This was written with '
+                       'ChromeRemoteShell");')
+
+
     # Detach from V8
     tab.v8_detach()
 

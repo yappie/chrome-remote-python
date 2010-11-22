@@ -123,7 +123,8 @@ if __name__ == '__main__':
     print tab
 
     # .v8_evaluate_js doesn't return anything (by design, see below for returns)
-    tab.v8_evaluate_js('window.open("http://new_site.com/");')
+    tab.v8_evaluate_js('window.open("http://new_site.com/ ");')
+    # A space here is not needed (it's here due to bug in GitHub URL parsing)
 
     # Give it a time to open
     import time; time.sleep(.2) 
