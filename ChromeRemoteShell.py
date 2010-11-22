@@ -119,16 +119,20 @@ if __name__ == '__main__':
     crs = ChromeRemoteShell()
 
     tab = crs.tabs()[0]
-    tab.v8_evaluate_js('window.open("http://new_site.com/");')
-    
-    import time; time.sleep(.2) # give it a time to open
     print tab
 
-    print crs.tab_by_url('http://new_site.com/')
+    tab.v8_evaluate_js('window.open("http://new_site.com/");')
+    import time; time.sleep(.2) # give it a time to open
+    tab = crs.tab_by_url('http://new_site.com/')
 
     tab.v8_attach()
 
-    print tab.v8_eval_expr('1+2')
-    tab.v8_eval_expr('1+x') # raises Exception with description
+    print tab.v8_eval_expr('1+2') # prints 3
+
+    try:
+        tab.v8_eval_expr('1+x') # raises Exception with description
+    except Exception:
+        pass
+        
     tab.v8_detach()
 
