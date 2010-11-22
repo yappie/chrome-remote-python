@@ -117,22 +117,37 @@ class ChromeRemoteShell(object):
 if __name__ == '__main__':
     from ChromeRemoteShell import ChromeRemoteShell
     crs = ChromeRemoteShell()
-
+    
+    # Get all Tabs
     tab = crs.tabs()[0]
     print tab
 
+    # .v8_evaluate_js doesn't return anything (by design, see below for returns)
     tab.v8_evaluate_js('window.open("http://new_site.com/");')
-    import time; time.sleep(.2) # give it a time to open
+
+    # Give it a time to open
+    import time; time.sleep(.2) 
+    
+    # Find new tab
     tab = crs.tab_by_url('http://new_site.com/')
 
+    # Attach to V8 engine debugger
     tab.v8_attach()
 
+    # Evaluate expression 1+2
     print tab.v8_eval_expr('1+2') # prints 3
 
+    # Error handling 1+x (x is undefined)
     try:
         tab.v8_eval_expr('1+x') # raises Exception with description
     except Exception:
         pass
-        
+
+    # Control dom with document.*
+    tab.v8_evaluate_js('document.write("This was written with '
+                       'ChromeRemoteShell");')
+
+
+    # Detach from V8
     tab.v8_detach()
 
