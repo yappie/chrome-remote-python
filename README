@@ -19,7 +19,8 @@ Then you can use ChromeRemoteShell form Python:
     tab = crs.tabs()[0]
     print tab
 
-    # .v8_evaluate_js doesn't return anything (by design, see below for returns)
+    # crs.v8_evaluate_js() doesn't return anything (by design [1], see below for 
+    # expressions to get things back) 
     tab.v8_evaluate_js('window.open("http://new_site.com/ ");')
     # A space here was not needed (it's here due to bug in GitHub URL parsing)
 
@@ -50,5 +51,6 @@ Then you can use ChromeRemoteShell form Python:
     tab.v8_detach()
 
 External reading about what this is:
+* [1] http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol
 * http://code.google.com/p/v8/wiki/DebuggerProtocol
-* http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol
+
