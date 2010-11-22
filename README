@@ -1,8 +1,8 @@
 First run:
 $ google-chrome --remote-shell-port=9222
 
-CAUTION: External users might connect your Google Chrome after running this and 
-run stuff in it, so use firewall.
+CAUTION: External users might connect to your Google Chrome after running 
+this and run stuff in Chrome, so use firewall.
 
 Then you can use ChromeRemoteShell form Python:
 
