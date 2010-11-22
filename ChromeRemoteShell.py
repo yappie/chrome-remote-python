@@ -115,6 +115,7 @@ class ChromeRemoteShell(object):
         return self.send_raw({ "command": "version" })['data']
 
 if __name__ == '__main__':
+
     from ChromeRemoteShell import ChromeRemoteShell
     crs = ChromeRemoteShell()
     
