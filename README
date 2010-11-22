@@ -1,0 +1,16 @@
+First run:
+$ google-chrome google-chrome --remote-shell-port=9222
+
+Then you can use:
+
+from ChromeRemoteShell import ChromeRemoteShell
+crs = ChromeRemoteShell()
+tabs = crs.tabs()
+tab = tabs[0]
+print tab
+
+tab.v8_attach()
+print tab.v8_eval_expr('1+2') # prints 3
+tab.v8_eval_expr('1+x') # raises Exception with description
+tab.v8_detach()
+
