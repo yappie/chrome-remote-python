@@ -1,5 +1,5 @@
 First run:
-$ google-chrome google-chrome --remote-shell-port=9222
+$ google-chrome --remote-shell-port=9222
 
 CAUTION: External users might connect your Google Chrome after running this and 
 run stuff in it, so use firewall.
