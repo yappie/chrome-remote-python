@@ -1,3 +1,9 @@
+Google Chrome Remote Shell is basically API for running Google Chrome. It allows
+you to connect to Google Chrome and run javascript instructions on your 
+instance.
+
+This is a Python library for controlling Google Chrome.
+
 First run:
 $ google-chrome --remote-shell-port=9222
 
