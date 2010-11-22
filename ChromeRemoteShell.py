@@ -123,9 +123,10 @@ if __name__ == '__main__':
     tab = crs.tabs()[0]
     print tab
 
-    # .v8_evaluate_js doesn't return anything (by design, see below for returns)
+    # crs.v8_evaluate_js() doesn't return anything (by design [1], see below for 
+    # expressions to get things back) 
     tab.v8_evaluate_js('window.open("http://new_site.com/ ");')
-    # A space here is not needed (it's here due to bug in GitHub URL parsing)
+    # A space here was not needed (it's here due to bug in GitHub URL parsing)
 
     # Give it a time to open
     import time; time.sleep(.2) 
