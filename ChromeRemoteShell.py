@@ -120,6 +120,8 @@ if __name__ == '__main__':
     from ChromeRemoteShell import ChromeRemoteShell
     crs = ChromeRemoteShell()
     
+    # crs.verbose = True # uncomment to debug
+    
     # Get all Tabs
     tab = crs.tabs()[0]
     print tab
