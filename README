@@ -10,10 +10,20 @@ $ google-chrome --remote-shell-port=9222
 CAUTION: External users might connect to your Google Chrome after running 
 this and run stuff in Chrome, so use firewall.
 
+WARNING: You need to have some real web page open in Chrome before trying
+to evaluate expressions (not some extension page, otherwise remote shell waits 
+indefinitely), so even better run:
+
+$ google-chrome --remote-shell-port=9222 http://google.com/
+
+
 Then you can use ChromeRemoteShell form Python:
 
     from ChromeRemoteShell import ChromeRemoteShell
     crs = ChromeRemoteShell()
+    
+    # crs.verbose = True
+    # set .verbose = True to see all communications with Chrome Remote Shell
     
     # Get all Tabs
     tab = crs.tabs()[0]
