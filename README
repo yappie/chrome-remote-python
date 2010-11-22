@@ -60,6 +60,10 @@ Then you can use ChromeRemoteShell form Python:
     # Detach from V8
     tab.v8_detach()
 
+NOT IMPLEMENTED:
+* Events
+* seq numbers and checking for correct seq numbers
+
 External reading about what this is:
 * [1] http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol
 * http://code.google.com/p/v8/wiki/DebuggerProtocol
