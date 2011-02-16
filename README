@@ -16,7 +16,6 @@ shell waits indefinitely), so even better run:
 
 $ google-chrome --remote-shell-port=9222 http://google.com/
 
-
 Then you can use ChromeRemoteShell form Python:
 
     from ChromeRemoteShell import ChromeRemoteShell
